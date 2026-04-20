@@ -87,7 +87,7 @@ const CustomInput = ({
           height: sizeHelper.calHp(height || 85),
           alignItems: "center",
           borderRadius: borderRadius || sizeHelper.calWp(25),
-          backgroundColor: backgroundColor || colors.white,
+          backgroundColor: backgroundColor || theme.googleButton,
           borderWidth: 1,
           borderColor: borderColor || theme.borderline,
           gap: sizeHelper.calWp(20)
@@ -123,7 +123,7 @@ const CustomInput = ({
             paddingVertical: 0, // Adjust as needed for centering
             fontFamily: fontFamily || fonts.Inter_Regular,
             fontWeight: fontWeight || "500",
-            color: color || colors.black,
+            color: color || theme.text,
             // paddingRight: sizeHelper.calWp(rightSource ? 10 : 0),
           }}
           placeholder={placeholder}

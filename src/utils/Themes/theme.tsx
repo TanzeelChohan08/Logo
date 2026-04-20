@@ -6,6 +6,7 @@ export const LightTheme = {
     borderline:"#EAE4DD",
     googleButton:"#FFFFFF",
     statusTheme: "dark-content",
+    dark:"#131313"
 };
 
 export const DarkTheme = {
@@ -16,4 +17,5 @@ export const DarkTheme = {
     borderline:"#3C3C3C",
     googleButton:"#1F1F1F",
     statusTheme: "light-content",
+    dark:"#FFFFFF"
 };

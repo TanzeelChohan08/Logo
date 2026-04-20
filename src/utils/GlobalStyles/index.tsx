@@ -3,10 +3,13 @@ import sizeHelper from "../Helpers";
 import { colors } from "../Themes";
 import { ThemeContext } from "../ThemeContext";
 import { useContext } from "react";
-const { theme }: any = useContext(ThemeContext);
 export const appStyles = StyleSheet.create({
   row: {
     flexDirection: "row",
+    alignItems: "center",
+  },
+  rowreverse: {
+    flexDirection: "row-reverse",
     alignItems: "center",
   },
   rowjustify: {
@@ -33,21 +36,13 @@ export const appStyles = StyleSheet.create({
     flex: 1,
     gap: sizeHelper.calHp(50),
   },
-   standard_circle: {
-    width: sizeHelper.calWp(80),
-    height: sizeHelper.calWp(80),
-    borderRadius: sizeHelper.calWp(80),
-    alignItems: "center",
-    justifyContent: "center",
-  },
 
     circle: {
-    width: sizeHelper.calWp(80),
-    height: sizeHelper.calWp(80),
+    width: sizeHelper.calWp(150),
+    height: sizeHelper.calWp(150),
     alignItems: "center",
     justifyContent: "center",
     borderRadius: sizeHelper.calWp(80),
-    // backgroundColor:colors?.light_blue
   },
 
     line: {

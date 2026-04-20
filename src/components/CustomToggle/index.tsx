@@ -1,27 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { TouchableOpacity, View, StyleSheet } from "react-native";
 import sizeHelper from "../../utils/Helpers";
 import { ThemeContext } from "../../utils/ThemeContext";
 import { colors } from "../../utils/Themes";
 
-const ThemeToggle = () => {
-    // ✅ correct destructuring
-    const { isDark, toggleTheme, theme } = useContext(ThemeContext);
+const CustomToggle = () => {
+    const [isOn, setIsOn] = useState(false)
+    const { theme }: any = useContext(ThemeContext);
 
     return (
         <TouchableOpacity
+            onPress={()=> setIsOn(prev => !prev)}
             style={[
                 styles.container,
-                { backgroundColor: isDark ? theme.primary : "#ccc" },
+                { backgroundColor: !isOn ? theme.primary : "#ccc" },
             ]}
             activeOpacity={0.8}
-            onPress={toggleTheme}
         >
             <View
                 style={[
                     styles.circle,
                     {
-                        alignSelf: isDark ? "flex-end" : "flex-start",
+                        alignSelf: !isOn ? "flex-end" : "flex-start",
                     },
                 ]}
             />
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ThemeToggle;
+export default CustomToggle;

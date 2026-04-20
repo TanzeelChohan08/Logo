@@ -67,7 +67,7 @@ const CustomButton = ({
         <CustomText
           text={text}
           color={textColor || colors.white}
-          size={size || 27}
+          size={size ||sizeHelper.calHp(40)}
           fontWeight={fontWeight || "700"}
           fontFam={fontFam || fonts.Oswald_Bold}
         />

@@ -17,7 +17,7 @@ import { appStyles } from "../../../utils/GlobalStyles";
 import GoogleIcon from "../../../assets/svgs/google.svg";
 import { icons } from "../../../assets/icons";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }: any) => {
   const { theme }: any = useContext(ThemeContext);
   const { lang, isRTL } = useContext(LanguageContext)
   return (
@@ -59,7 +59,6 @@ const LoginScreen = () => {
         label={translate(lang, "Email", "البريد الإلكتروني")}
         placeholder={translate(lang, "Type here", "اكتب هنا")}
         labelalignSelf={isRTL ? "flex-end" : "flex-start"}
-        backgroundColor={theme.background}
         textAlign={"left"}
       />
       {
@@ -73,7 +72,6 @@ const LoginScreen = () => {
             placeholder={translate(lang, "Type here", "اكتب هنا")}
             labelalignSelf={isRTL ? "flex-end" : "flex-start"}
             leftSource={icons.inputEye}
-            backgroundColor={theme.background}
           />
           :
           <CustomInput
@@ -86,15 +84,11 @@ const LoginScreen = () => {
             borderWidth={1}
             borderColor={theme.borderline}
             rightSource={icons.inputEye}
-            backgroundColor={theme.background}
           />
       }
-      {/* <View style={[appStyles.rowjustify, { marginBottom: sizeHelper.calHp(100) }]}>
-        <ThemeToggle />
-        <LanguageSwitcher />
-      </View> */}
       <CustomButton
         width={"98%"}
+        onPress={() => navigation.navigate("CreateAccount")}
         text={translate(lang, "Login", "تسجيل الدخول")}
       />
       <CustomText
