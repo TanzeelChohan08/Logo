@@ -6,16 +6,22 @@ export const LightTheme = {
     borderline:"#EAE4DD",
     googleButton:"#FFFFFF",
     statusTheme: "dark-content",
-    dark:"#131313"
+    dark:"#131313",
+    circleLine:"#EAE4DD",
+    buttonBlue:"#287FBF",
+    buttongrey:"#898989",
 };
 
 export const DarkTheme = {
     text: "#EBEBEB",
     primary: "#FF4B44",
-    background: "#000",
+    background: "#131313",
     grey: "#898989",
     borderline:"#3C3C3C",
     googleButton:"#1F1F1F",
     statusTheme: "light-content",
-    dark:"#FFFFFF"
+    dark:"#FFFFFF",
+    circleLine:"#EBEBEB",
+    buttonBlue:"#287FBF",
+    buttongrey:"#898989",
 };

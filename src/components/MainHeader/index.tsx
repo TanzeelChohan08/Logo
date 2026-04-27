@@ -1,11 +1,11 @@
 import {
-  Image,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View,
-  StyleProp,
-  ViewStyle,
+    Image,
+    StyleSheet,
+    TextInput,
+    TouchableOpacity,
+    View,
+    StyleProp,
+    ViewStyle,
 } from "react-native";
 import sizeHelper, { screenWidth, screentHeight } from "../../utils/Helpers";
 import { fonts } from "../../utils/Themes/fonts";
@@ -19,89 +19,156 @@ import { useContext } from "react";
 import { LanguageContext } from "../../utils/LanguageContext";
 import { translate } from "../../utils/Translate";
 
-const BackButton = ({ onPress, tintColor, backgroundColor, borderColor, isRTL }: any) => (
-  <TouchableOpacity
-    onPress={onPress}
-    style={[styles.circle, {
-      backgroundColor,
-      borderColor
-    }]}
+const BackButton = ({ onPress, tintColor, backgroundColor, borderColor, source, width, height }: any) => (
+    <TouchableOpacity
+        onPress={onPress}
+        style={[styles.circle, {
+            backgroundColor,
+            borderColor
+        }]}
 
-  >
-    <Image
-      source={isRTL ? icons.reverse_back_arrow : icons.back_arrow}
-      style={{
-        width: sizeHelper.calWp(40),
-        height: sizeHelper.calWp(40),
-        tintColor: tintColor
-      }}
-    />
-  </TouchableOpacity>
+    >
+        <Image
+            source={source}
+            style={{
+                width: width || sizeHelper.calWp(40),
+                height: height || sizeHelper.calWp(40),
+                tintColor: tintColor
+            }}
+        />
+    </TouchableOpacity>
 )
 
-const MainHeader = ({ title, onPress }: any) => {
+const MainHeader = ({ title, onPress, onProfilePress, showBackButton = false }: any) => {
 
-  const { theme }: any = useContext(ThemeContext);
-  const { isRTL } = useContext(LanguageContext)
-  const navigation = useNavigation();
-  return (
-    <>
-      <View
-      style={{marginTop:sizeHelper.calHp(20)}}
-      >
-        <View style={[appStyles.row, { gap: sizeHelper.calWp(20), alignSelf: isRTL ? "flex-end" : "flex-start" }]}>
-          {
-            isRTL
-              ? (
-                <>
-                  <CustomText
-                    size={30}
-                    text={title}
-                    fontWeight={"700"}
-                    color={theme.text}
-                    fontFam={fonts.Oswald_Bold}
-                  />
-                  <BackButton
-                    onPress={onPress}
-                    tintColor={theme.text}
-                    borderColor={theme.borderline}
-                    backgroundColor={theme.googleButton}
-                    isRTL
-                  />
-                </>
-              ) : (
-                <>
-                  <BackButton
-                    onPress={onPress}
-                    tintColor={theme.text}
-                    borderColor={theme.borderline}
-                    backgroundColor={theme.googleButton}
+    const { theme, isDark }: any = useContext(ThemeContext);
+    const { isRTL } = useContext(LanguageContext)
+    const navigation = useNavigation();
+    return (
+        <>
+            <View
+                style={{ marginTop: sizeHelper.calHp(20) }}
+            >
+                <View style={[appStyles.rowjustify, { alignItems: 'center', width: '100%' }]}>
+                    {
+                        isRTL
+                            ? (
+                                <>
+                                    <View style={[appStyles.row, { gap: sizeHelper.calWp(20) }]}>
+                                        <TouchableOpacity onPress={onProfilePress}>
+                                            <Image
+                                                source={icons.mini_profile}
+                                                style={{
+                                                    width: sizeHelper.calWp(70),
+                                                    height: sizeHelper.calWp(70)
+                                                }}
+                                            />
+                                        </TouchableOpacity>
+                                        <BackButton
+                                            onPress={onPress}
+                                            borderColor={theme.circleLine}
+                                            source={isDark ? icons.dark_notification : icons.light_notifications}
+                                            width={sizeHelper.calWp(35)}
+                                            height={sizeHelper.calWp(35)}
+                                        />
+                                        <View style={[styles.circle, { borderColor: theme.circleLine }]}>
+                                            <CustomText
+                                                size={20}
+                                                text={"العربية"}
+                                                fontWeight={"700"}
+                                                color={theme.text}
+                                                fontFam={fonts.Oswald_Bold}
+                                            />
+                                        </View>
+                                    </View>
+                                    <View style={[appStyles.row, { gap: sizeHelper.calWp(20), }]}>
+                                        <CustomText
+                                            size={40}
+                                            text={title}
+                                            fontWeight={"700"}
+                                            color={theme.text}
+                                            fontFam={fonts.Oswald_Bold}
+                                        />
+                                        {
+                                            showBackButton && (
+                                                <BackButton
+                                                    onPress={onPress}
+                                                    tintColor={theme.text}
+                                                    borderColor={theme.borderline}
+                                                    source={icons.reverse_back_arrow}
+                                                    backgroundColor={theme.googleButton}
+                                                />
+                                            )
+                                        }
+                                    </View>
 
-                  />
-                  <CustomText
-                    size={30}
-                    text={title}
-                    fontWeight={"700"}
-                    color={theme.text}
-                    fontFam={fonts.Oswald_Bold}
-                  />
-                </>)
-          }
+                                </>
+                            ) : (
+                                <>
+                                    <View style={[appStyles.row, { gap: sizeHelper.calWp(20), }]}>
+                                        {
+                                            showBackButton && (
+                                                <BackButton
+                                                    onPress={onPress}
+                                                    tintColor={theme.text}
+                                                    source={icons.back_arrow}
+                                                    borderColor={theme.borderline}
+                                                    backgroundColor={theme.googleButton}
+                                                />
+                                            )
+                                        }
+                                        <CustomText
+                                            size={40}
+                                            text={title}
+                                            fontWeight={"700"}
+                                            color={theme.text}
+                                            fontFam={fonts.Oswald_Bold}
+                                        />
+                                    </View>
+                                    <View style={[appStyles.row, { gap: sizeHelper.calWp(20) }]}>
+                                        <View style={[styles.circle, { borderColor: theme.circleLine }]}>
+                                            <CustomText
+                                                size={20}
+                                                text={"EN"}
+                                                fontWeight={"700"}
+                                                color={theme.text}
+                                                fontFam={fonts.Oswald_Bold}
+                                            />
+                                        </View>
+                                        <BackButton
+                                            onPress={onPress}
+                                            borderColor={theme.circleLine}
+                                            source={isDark ? icons.dark_notification : icons.light_notifications}
+                                            width={sizeHelper.calWp(35)}
+                                            height={sizeHelper.calWp(35)}
+                                        />
+                                        <TouchableOpacity onPress={onProfilePress}>
+                                            <Image
+                                                source={icons.mini_profile}
+                                                style={{
+                                                    width: sizeHelper.calWp(70),
+                                                    height: sizeHelper.calWp(70)
+                                                }}
+                                            />
+                                        </TouchableOpacity>
+                                    </View>
+                                </>)
+                    }
 
-        </View>
-      </View>
-    </>
-  );
+                </View>
+            </View>
+        </>
+    );
 };
 export default MainHeader;
 
 const styles = StyleSheet.create({
-  circle: {
-    width: sizeHelper.calWp(80),
-    height: sizeHelper.calWp(80),
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderRadius: sizeHelper.calWp(80),
-  },
+    circle: {
+        width: sizeHelper.calWp(70),
+        height: sizeHelper.calWp(70),
+        alignItems: "center",
+        justifyContent: "center",
+        borderWidth: 1,
+        borderRadius: sizeHelper.calWp(999),
+    },
 });

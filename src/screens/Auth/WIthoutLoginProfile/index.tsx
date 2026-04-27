@@ -15,8 +15,8 @@ import CustomInput from "../../../components/Input";
 import CustomButton from "../../../components/Button";
 import { appStyles } from "../../../utils/GlobalStyles";
 import { icons } from "../../../assets/icons";
-import MainHeader from "../../../components/MainHeader";
 import CustomToggle from "../../../components/CustomToggle";
+import ProfileHeader from "../../../components/ProfileHeader";
 
 const WithoutLoginProfileScreen = ({ navigation }: any) => {
     const MatchSetting = ({ title }: any) => {
@@ -55,11 +55,11 @@ const WithoutLoginProfileScreen = ({ navigation }: any) => {
     return (
         <ScreenLayout
         >
-            <MainHeader
+            <ProfileHeader
                 title={translate(lang, "User Profile", "ملف المستخدم")}
                 onPress={() => navigation.goBack()}
             />
-            <View style={[styles.container, { backgroundColor: theme.googleButton }]}>
+            <View style={[appStyles.container, { backgroundColor: theme.googleButton }]}>
                 <View style={[appStyles.circle, { borderWidth: 1, borderColor: theme.borderline, backgroundColor: theme.background }]}>
                     <Image
                         source={icons.user}
@@ -80,10 +80,10 @@ const WithoutLoginProfileScreen = ({ navigation }: any) => {
                 <CustomButton
                     width={"98%"}
                     text={translate(lang, "Login", "تسجيل الدخول")}
-                // onPress={() => navigation.navigate("WithoutLoginProfileScreen")}
+                    onPress={() => navigation.navigate("BottomTab")}
                 />
             </View>
-            <View style={[appStyles.rowjustify, styles.container, { backgroundColor: theme.googleButton, padding: sizeHelper.calWp(30) }]}>
+            <View style={[appStyles.rowjustify, appStyles.container, { backgroundColor: theme.googleButton, padding: sizeHelper.calWp(30) }]}>
                 {
                     isRTL
                         ?
@@ -110,7 +110,7 @@ const WithoutLoginProfileScreen = ({ navigation }: any) => {
                         </>
                 }
             </View>
-            <View style={[appStyles.rowjustify, styles.container, { backgroundColor: theme.googleButton, padding: sizeHelper.calWp(30) }]}>
+            <View style={[appStyles.rowjustify, appStyles.container, { backgroundColor: theme.googleButton, padding: sizeHelper.calWp(30) }]}>
                 {
                     isRTL
                         ?
@@ -145,7 +145,7 @@ const WithoutLoginProfileScreen = ({ navigation }: any) => {
                         </>
                 }
             </View>
-            <View style={[appStyles.rowjustify, styles.container, { backgroundColor: theme.googleButton, padding: sizeHelper.calWp(30) }]}>
+            <View style={[appStyles.rowjustify, appStyles.container, { backgroundColor: theme.googleButton, padding: sizeHelper.calWp(30) }]}>
                 {
                     isRTL
                         ?
@@ -172,7 +172,7 @@ const WithoutLoginProfileScreen = ({ navigation }: any) => {
                         </>
                 }
             </View>
-            <View style={[styles.container, { backgroundColor: theme.googleButton }]}>
+            <View style={[appStyles.container, { backgroundColor: theme.googleButton }]}>
                 <CustomText
                     size={24}
                     fontWeight={"700"}
@@ -191,10 +191,4 @@ const WithoutLoginProfileScreen = ({ navigation }: any) => {
 };
 export default WithoutLoginProfileScreen;
 const styles = StyleSheet.create({
-    container: {
-        alignItems: "center",
-        gap: sizeHelper.calHp(30),
-        padding: sizeHelper.calWp(35),
-        borderRadius: sizeHelper.calWp(40),
-    }
 })

@@ -5,13 +5,14 @@ import sizeHelper from "../../utils/Helpers";
 import { fonts } from "../../utils/Themes/fonts";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors } from "../../utils/Themes";
-import ClientsScreen from "../../screens/Main/Clients";
+import HomeScreen from "../../screens/Main/HomeScreen";
 import { icons } from "../../assets/icons";
-import ServicesScreen from "../../screens/Main/Services";
-import ScheduleScreen from "../../screens/Main/Schedule";
-import StaffScreen from "../../screens/Main/Staff";
-import MenuScreen from "../../screens/Main/Menu";
+import { useContext } from "react";
+import { ThemeContext } from "../../utils/ThemeContext";
+import { LanguageContext } from "../../utils/LanguageContext";
 const BottomTab = ({ navigation }: any) => {
+  const { theme } = useContext(ThemeContext)
+  const { lang, isRTL } = useContext(LanguageContext)
   const Bottom = createBottomTabNavigator();
   const insets = useSafeAreaInsets();
 
@@ -23,7 +24,6 @@ const BottomTab = ({ navigation }: any) => {
           source={img}
           style={{
             ...style.img,
-            tintColor: focused ? colors.primary : colors.text_grey,
           }}
         />
         <CustomText
@@ -31,7 +31,7 @@ const BottomTab = ({ navigation }: any) => {
           fontFam={fonts.Inter_Bold}
           fontWeight="700"
           size={18}
-          color={focused ? colors.primary : colors.text_grey}
+        color={focused ? theme.primary : theme.grey}
         />
       </View>
     );
@@ -39,7 +39,8 @@ const BottomTab = ({ navigation }: any) => {
 
   return (
     <Bottom.Navigator
-      initialRouteName="ClientsScreen"
+    
+      initialRouteName="HomeScreen"
       screenOptions={({ route }) => ({
         tabBarHideOnKeyboard: false,
         tabBarShowLabel: false,
@@ -60,7 +61,7 @@ const BottomTab = ({ navigation }: any) => {
           };
         },
         tabBarStyle: {
-          backgroundColor: colors.white,
+          backgroundColor: theme.googleButton,
           justifyContent: "center",
           alignItems: "center",
           height: sizeHelper.calHp(110),
@@ -69,8 +70,8 @@ const BottomTab = ({ navigation }: any) => {
             Platform.OS == "ios"
               ? 0
               : insets.bottom <= 16
-              ? insets.bottom - insets.bottom
-              : insets.bottom,
+                ? insets.bottom - insets.bottom
+                : insets.bottom,
 
           paddingTop: sizeHelper.calHp(Platform.OS == "ios" ? 20 : 30),
         },
@@ -80,114 +81,17 @@ const BottomTab = ({ navigation }: any) => {
     >
       {/* Home Tab */}
       <Bottom.Screen
-        name="ClientsScreen"
-        component={ClientsScreen}
+        name="HomeScreen"
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
               <TabItem
-                title={"CLIENTS"}
-                img={icons.clients}
+              
+                title={isRTL ?"الرئيسية":"Home"}
+                img={icons.home}
                 focused={focused}
               />
-            );
-          },
-        }}
-      />
-      {/* Calendar Tab */}
-      <Bottom.Screen
-        name="ServicesScreen"
-        component={ServicesScreen}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            return (
-              <TabItem
-                title={"SERVICES"}
-                img={icons.service}
-                focused={focused}
-              />
-            );
-          },
-        }}
-      />
-      {/* AddEvent Tab */}
-
-      <Bottom.Screen
-        name="ScheduleScreen"
-        component={ScheduleScreen}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            return (
-              <View
-                style={{
-                  position: "absolute",
-                  top: sizeHelper.calHp(Platform.OS == "ios" ? -50 : -80),
-                  gap: sizeHelper.calHp(15),
-                  alignItems: "center",
-                }}
-              >
-                <View
-                  style={{
-                    height: sizeHelper.calHp(95),
-                    width: sizeHelper.calHp(95),
-                    borderRadius: sizeHelper.calWp(95),
-                    backgroundColor: colors.primary,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    elevation: 8,
-                    shadowColor: colors.primary,
-                    shadowOffset: { width: 5, height: 5 },
-                    shadowOpacity: 1,
-                    shadowRadius: 5,
-                  }}
-                 
-                >
-                  <Image
-                    resizeMode="contain"
-                    source={icons.schedule}
-                    style={{
-                      height: sizeHelper.calHp(40),
-                      width: sizeHelper.calHp(40),
-                    }}
-                  />
-                </View>
-
-                <CustomText
-                  text={"Scheduler"}
-                  fontFam={fonts.Inter_Bold}
-                  fontWeight="700"
-                  size={18}
-                  color={focused ? colors.primary : colors.text_grey}
-                />
-              </View>
-            );
-          },
-        }}
-      />
-      {/* Contacts Tab */}
-      <Bottom.Screen
-        name="StaffScreen"
-        component={StaffScreen}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            return (
-              <TabItem title={"STAFF"} img={icons.staff} focused={focused} />
-            );
-          },
-        }}
-      />
-      {/* profile Tab */}
-      <Bottom.Screen
-        name="MenuScreen"
-        component={MenuScreen}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            return (
-              <TabItem title={"MORE"} img={icons.menu} focused={focused} />
             );
           },
         }}
@@ -210,5 +114,4 @@ const style = StyleSheet.create({
     height: sizeHelper.calHp(33),
     width: sizeHelper.calHp(33),
   },
-  tabBarStyle: {},
 });

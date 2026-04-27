@@ -37,7 +37,7 @@ export const appStyles = StyleSheet.create({
     gap: sizeHelper.calHp(50),
   },
 
-    circle: {
+  circle: {
     width: sizeHelper.calWp(150),
     height: sizeHelper.calWp(150),
     alignItems: "center",
@@ -45,8 +45,15 @@ export const appStyles = StyleSheet.create({
     borderRadius: sizeHelper.calWp(80),
   },
 
-    line: {
+  line: {
     width: "100%",
     height: 1,
   },
+  container: {
+    width: "100%",
+    alignItems: "center",
+    gap: sizeHelper.calHp(30),
+    padding: sizeHelper.calWp(30),
+    borderRadius: sizeHelper.calWp(40),
+  }
 });
